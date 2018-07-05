@@ -8,24 +8,12 @@ MAC = sys.argv[1]
 band = MiBand2(MAC, debug=True)
 band.setSecurityLevel(level="medium")
 
-if len(sys.argv) > 2:
-    if band.initialize():
-        print("Init OK")
     band.set_heart_monitor_sleep_support(enabled=False)
     band.disconnect()
     sys.exit(0)
 else:
     band.authenticate()
 
-print 'Message notif'
-band.send_alert(ALERT_TYPES.MESSAGE)
-time.sleep(3)
-# this will vibrate till not off
-print 'Phone notif'
-band.send_alert(ALERT_TYPES.PHONE)
-time.sleep(8)
-print 'OFF'
-band.send_alert(ALERT_TYPES.NONE)
 print 'Soft revision:',band.get_revision()
 print 'Hardware revision:',band.get_hrdw_revision()
 print 'Serial:',band.get_serial()

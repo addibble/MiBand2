@@ -1,5 +1,7 @@
 *.pyc
 *.log
+.*
+*.db*
 heartrate_*.*
 bin
 lib
